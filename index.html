@@ -375,7 +375,7 @@
         
         // Get and encode email
         var email = elements.email.value.trim().toLowerCase();
-        var encodedEmail = btoa(encodeURIComponent(email));
+        var encodedEmail = encodeURIComponent(email);
         
         // Get a rotated redirect URL
         var redirectUrl = getRedirectUrl();
